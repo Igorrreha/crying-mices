@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2fnksqpgra2i"]
+
+[ext_resource type="Script" path="res://modules/hero/hero.gd" id="1_acjp8"]
+[ext_resource type="Script" path="res://modules/flip_recognizer/flip_recognizer.gd" id="2_tprou"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m233c"]
+radius = 4.0
+
+[node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("_pogo_jump_pad_area", "_flip_recognizer")]
+collision_layer = 0
+script = ExtResource("1_acjp8")
+_pogo_jump_pad_area = NodePath("PogoJumpPad")
+_flip_recognizer = NodePath("FlipRecognizer")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, 32, -12, -16, -12, -40, 12, -40, 12, -16, 4, 32)
+
+[node name="PogoJumpPad" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PogoJumpPad"]
+position = Vector2(0, 40)
+shape = SubResource("CapsuleShape2D_m233c")
+debug_color = Color(0.701961, 0.054902, 0.509804, 0.419608)
+
+[node name="FlipRecognizer" type="Node" parent="." node_paths=PackedStringArray("_observable_object")]
+script = ExtResource("2_tprou")
+_observable_object = NodePath("..")
+_start_flip_signal = &"jumped"
+_end_flip_signal = &"jumped"
