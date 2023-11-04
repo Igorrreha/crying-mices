@@ -31,7 +31,7 @@ var _draw_colors: Array = [Color.RED, Color.BLUE]
 
 
 func _ready() -> void:
-	if _deactivate_on_run:
+	if _deactivate_on_run and not Engine.is_editor_hint():
 		_is_active = false
 	
 	if _draw_mode != DrawMode.ON_JUMP:
