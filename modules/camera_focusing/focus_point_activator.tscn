@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcf05yqxu2sp"]
+
+[ext_resource type="Script" path="res://modules/camera_focusing/focus_point_activator.gd" id="1_2py1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwibt"]
+size = Vector2(20, 200)
+
+[node name="FocusPointActivator" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_2py1b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -100)
+shape = SubResource("RectangleShape2D_pwibt")

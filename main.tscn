@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://jo0dsnocvbvr"]
+[gd_scene load_steps=5 format=3 uid="uid://jo0dsnocvbvr"]
 
 [ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="1_e5tw0"]
+[ext_resource type="PackedScene" uid="uid://dcf05yqxu2sp" path="res://modules/camera_focusing/focus_point_activator.tscn" id="2_wxlut"]
+[ext_resource type="PackedScene" uid="uid://bbhs4041re2j2" path="res://modules/camera_focusing/focus_point.tscn" id="3_cmmvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeee2"]
 size = Vector2(1256, 112)
@@ -20,4 +22,13 @@ scale = Vector2(0.999985, 0.999985)
 position = Vector2(596, 633)
 shape = SubResource("RectangleShape2D_aeee2")
 
-[editable path="GameWorld/Hero"]
+[node name="Camera2D" type="Camera2D" parent="GameWorld"]
+position = Vector2(574, 322)
+position_smoothing_enabled = true
+
+[node name="FocusPointActivator" parent="." node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+position = Vector2(691, 585)
+_focus_point = NodePath("../FocusPoint")
+
+[node name="FocusPoint" parent="." instance=ExtResource("3_cmmvb")]
+position = Vector2(1002, 304)

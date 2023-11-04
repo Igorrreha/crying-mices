@@ -24,6 +24,11 @@ toggle_jump_debuger={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="common"
+2d_physics/layer_2="hero"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -10,7 +10,7 @@ height = 16.0
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("_pogo_jump_pad_area", "_flip_recognizer")]
 scale = Vector2(0.999939, 0.999939)
-collision_layer = 0
+collision_layer = 2
 velocity = Vector2(0, 872037)
 script = ExtResource("1_acjp8")
 _pogo_jump_pad_area = NodePath("PogoJumpPad")

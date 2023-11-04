@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbhs4041re2j2"]
+
+[ext_resource type="Script" path="res://modules/camera_focusing/focus_point.gd" id="1_8eeod"]
+
+[node name="FocusPoint" type="Node2D"]
+script = ExtResource("1_8eeod")
