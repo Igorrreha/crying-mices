@@ -19,6 +19,5 @@ func _exit_tree() -> void:
 
 func _activate_focus_point() -> void:
 	_focus_point.activate()
-	print("as")
 	if _one_shot:
 		_collision_shape.set_deferred("disabled", true)
