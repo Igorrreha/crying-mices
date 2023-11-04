@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CollectableMicesSignalsChannel" load_steps=2 format=3 uid="uid://cnoy50oya00vh"]
+
+[ext_resource type="Script" path="res://modules/collectable_mice/signals_channel.gd" id="1_5xky8"]
+
+[resource]
+resource_name = "mices"
+script = ExtResource("1_5xky8")
