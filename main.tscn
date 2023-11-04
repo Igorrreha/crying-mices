@@ -1,31 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://jo0dsnocvbvr"]
+[gd_scene load_steps=3 format=3 uid="uid://jo0dsnocvbvr"]
 
 [ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="1_e5tw0"]
-
-[sub_resource type="Curve" id="Curve_nxnkt"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.75301, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_14gxu"]
-width = 128
-curve = SubResource("Curve_nxnkt")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5mw4n"]
-particle_flag_disable_z = true
-spread = 180.0
-gravity = Vector3(0, 98, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 200.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 100.0
-damping_max = 150.0
-scale_min = 2.0
-scale_max = 8.0
-scale_curve = SubResource("CurveTexture_14gxu")
-hue_variation_max = 0.26
-turbulence_noise_strength = 5.0
-attractor_interaction_enabled = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeee2"]
 size = Vector2(1256, 112)
@@ -34,26 +9,10 @@ size = Vector2(1256, 112)
 
 [node name="GameWorld" type="Node2D" parent="."]
 
-[node name="Backflip" type="GPUParticles2D" parent="GameWorld"]
-position = Vector2(179, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_5mw4n")
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-
-[node name="Frontflip" type="GPUParticles2D" parent="GameWorld"]
-position = Vector2(1001, 194)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_5mw4n")
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-
 [node name="Hero" parent="GameWorld" instance=ExtResource("1_e5tw0")]
-position = Vector2(550, 441)
+position = Vector2(412, 530)
+rotation = 0.302817
+scale = Vector2(0.999985, 0.999985)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameWorld"]
 
@@ -61,5 +20,4 @@ position = Vector2(550, 441)
 position = Vector2(596, 633)
 shape = SubResource("RectangleShape2D_aeee2")
 
-[connection signal="backfliped" from="GameWorld/Hero" to="GameWorld/Backflip" method="restart"]
-[connection signal="frontfliped" from="GameWorld/Hero" to="GameWorld/Frontflip" method="restart"]
+[editable path="GameWorld/Hero"]
