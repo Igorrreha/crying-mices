@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhfjuoc182oed"]
+
+[sub_resource type="Curve" id="Curve_puumj"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.179794, -1), 0.0, 0.0, 0, 0, Vector2(0.302453, 1), 0.0, 0.0, 0, 0, Vector2(0.502582, -1), 0.0, 0.0, 0, 0, Vector2(0.638154, 1), 0.0, 0.0, 0, 0, Vector2(0.828599, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_bgv24"]
+curve = SubResource("Curve_puumj")
+
+[sub_resource type="Curve" id="Curve_nxnkt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.75301, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_14gxu"]
+width = 128
+curve = SubResource("Curve_nxnkt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_malin"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 200.0
+damping_max = 300.0
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_14gxu")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_bgv24")
+turbulence_noise_strength = 5.0
+attractor_interaction_enabled = false
+
+[node name="BigConfettiParticles" type="GPUParticles2D"]
+position = Vector2(196, 309)
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_malin")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
