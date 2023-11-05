@@ -18,6 +18,9 @@ extends Node2D
 @export var _top_point: Marker2D
 @export var _bottom_point: Marker2D
 @export var _raycast: RayCast2D
+@export var _jump_0_height_line: Line2D
+@export var _jump_1_height_line: Line2D
+@export var _jump_2_height_line: Line2D
 
 
 var _gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -32,6 +35,10 @@ var _draw_colors: Array = [Color.RED, Color.BLUE]
 
 
 func _ready() -> void:
+	_jump_0_height_line.points = _get_max_jump_height_line(_hero._jump_0_force)
+	_jump_1_height_line.points = _get_max_jump_height_line(_hero._jump_1_force)
+	_jump_2_height_line.points = _get_max_jump_height_line(_hero._jump_2_force)
+	
 	if _deactivate_on_run and not Engine.is_editor_hint():
 		_is_active = false
 	
@@ -39,6 +46,18 @@ func _ready() -> void:
 		return
 	
 	_hero.jumped.connect(_on_hero_jumped)
+
+
+func _get_max_jump_height_line(jump_force: float) -> Array[Vector2]:
+	var points: Array[Vector2]
+	for angle_degrees in range(-179, 180, 1):
+		var jump_vector = Vector2.UP.rotated(deg_to_rad(angle_degrees) / 2) * jump_force
+		var jump_path = _get_jump_path(jump_vector, 1.5)
+		var max = jump_path.reduce(func(max: Vector2, cur: Vector2):
+			return max if max.y < cur.y else cur)
+		points.append(max)
+	
+	return points
 
 
 func _on_hero_jumped() -> void:
@@ -57,14 +76,15 @@ func _draw() -> void:
 	for point in _draw_points:
 		var color = _draw_colors[draw_color_idx]
 		
-		_draw_jump_path(point, _hero._jump_0_force,
+		_draw_jump_path(point - global_position, _hero._jump_0_force,
 			color * Color(1, 1, 1) * Color(0.4, 0.4, 0.4), 1)
-		_draw_jump_path(point, _hero._jump_1_force,
+		_draw_jump_path(point - global_position, _hero._jump_1_force,
 			color * Color(1, 1, 1) * Color(0.7, 0.7, 0.7), 1.25)
-		_draw_jump_path(point, _hero._jump_2_force,
+		_draw_jump_path(point - global_position, _hero._jump_2_force,
 			color * Color(1, 1, 1), 1.5)
 		
 		draw_color_idx += 1
+		return
 
 
 func _draw_jump_path(offset: Vector2, jump_force: float, color: Color, weight: float) -> void:
@@ -85,6 +105,8 @@ func _physics_process(delta: float) -> void:
 			
 			_prev_hero_transform = _hero.global_transform
 			_draw_points = [_bottom_point.global_position, _top_point.global_position]
+			
+			global_position = _bottom_point.global_position
 		
 		DrawMode.FROM_PREDICTED_JUMP_POINT:
 			var predicted_point = _get_predicted_jump_point()
