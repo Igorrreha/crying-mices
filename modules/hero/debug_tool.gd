@@ -12,7 +12,14 @@ extends Node2D
 		_draw_mode = v
 		
 @export var _deactivate_on_run: bool
-@export var _is_active: bool
+@export var _is_active: bool:
+	set(v):
+		if v:
+			show()
+		else:
+			hide()
+		
+		_is_active = v
 
 @export_group("Components")
 @export var _top_point: Marker2D
@@ -41,6 +48,7 @@ func _ready() -> void:
 	
 	if _deactivate_on_run and not Engine.is_editor_hint():
 		_is_active = false
+		hide()
 	
 	if _draw_mode != DrawMode.ON_JUMP:
 		return
@@ -98,6 +106,8 @@ func _physics_process(delta: float) -> void:
 	if not _is_active:
 		return
 	
+	global_position = _bottom_point.global_position
+	
 	match _draw_mode:
 		DrawMode.FLOATING:
 			if _prev_hero_transform == _hero.global_transform:
@@ -105,8 +115,6 @@ func _physics_process(delta: float) -> void:
 			
 			_prev_hero_transform = _hero.global_transform
 			_draw_points = [_bottom_point.global_position, _top_point.global_position]
-			
-			global_position = _bottom_point.global_position
 		
 		DrawMode.FROM_PREDICTED_JUMP_POINT:
 			var predicted_point = _get_predicted_jump_point()
