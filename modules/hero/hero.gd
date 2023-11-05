@@ -8,7 +8,10 @@ signal frontfliped
 signal double_backfliped
 signal double_frontfliped
 
+signal dead
 
+
+@export var _hp: int
 @export var _jump_0_force = 350.0
 @export var _jump_1_force = 450.0
 @export var _jump_2_force = 550.0
@@ -19,6 +22,19 @@ signal double_frontfliped
 
 var _gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _cur_jump_type: JumpType
+
+var _immovable: bool = true
+
+
+func become_immovable() -> void:
+	velocity = Vector2.ZERO
+	_immovable = true
+
+
+func take_damage(amount: int) -> void:
+	_hp = clamp(_hp - amount, 0, INF)
+	if _hp == 0:
+		dead.emit()
 
 
 func _ready() -> void:
@@ -44,12 +60,16 @@ func _jump() -> void:
 
 func _physics_process(delta: float) -> void:
 	_update_rotation()
+	
+	if _immovable:
+		return
+	
 	_apply_gravity(delta)
 	move_and_slide()
 
 
 func _apply_gravity(frame_delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() and not _immovable:
 		velocity.y += _gravity * frame_delta
 
 
@@ -77,6 +97,11 @@ func _on_flip_end(angle_delta: float) -> void:
 			_cur_jump_type = JumpType.SUPER
 		
 		print("b")
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		_immovable = false
 
 
 enum JumpType {

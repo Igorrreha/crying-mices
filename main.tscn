@@ -1,22 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://jo0dsnocvbvr"]
+[gd_scene load_steps=11 format=3 uid="uid://jo0dsnocvbvr"]
 
 [ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="1_e5tw0"]
 [ext_resource type="PackedScene" uid="uid://1d0eabr5vtnp" path="res://modules/collectable_mice/collectable_mice.tscn" id="2_v5ayp"]
+[ext_resource type="Script" path="res://modules/hero_to_checkpoint_returner/hero_to_checkpoint_returner.gd" id="2_vvsg0"]
 [ext_resource type="PackedScene" uid="uid://dcf05yqxu2sp" path="res://modules/camera_focusing/focus_point_activator.tscn" id="2_wxlut"]
 [ext_resource type="PackedScene" uid="uid://bbhs4041re2j2" path="res://modules/camera_focusing/focus_point.tscn" id="3_cmmvb"]
 [ext_resource type="PackedScene" uid="uid://ukpcm1k1a78o" path="res://modules/ui/hud/mices_counter.tscn" id="5_e3qwk"]
+[ext_resource type="PackedScene" uid="uid://bfut624s83h1e" path="res://modules/checkpoint/checkpoint.tscn" id="5_t3b3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeee2"]
 size = Vector2(1256, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h183p"]
+size = Vector2(184, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e35y"]
+size = Vector2(116, 112)
 
 [node name="Main" type="Node"]
 
 [node name="GameWorld" type="Node2D" parent="."]
 
 [node name="Hero" parent="GameWorld" instance=ExtResource("1_e5tw0")]
-position = Vector2(412, 530)
-rotation = 0.302817
+position = Vector2(544, 512)
+rotation = 0.22014
 scale = Vector2(0.999985, 0.999985)
+
+[node name="ToCheckpointReturner" type="Node" parent="GameWorld/Hero" node_paths=PackedStringArray("_hero")]
+script = ExtResource("2_vvsg0")
+_hero = NodePath("..")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="GameWorld/Hero"]
+rect = Rect2(-10, -40.045, 20, 83.065)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameWorld"]
 
@@ -24,20 +39,84 @@ scale = Vector2(0.999985, 0.999985)
 position = Vector2(596, 633)
 shape = SubResource("RectangleShape2D_aeee2")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameWorld/StaticBody2D"]
+position = Vector2(1363, 635)
+shape = SubResource("RectangleShape2D_h183p")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameWorld/StaticBody2D"]
+position = Vector2(1593, 636)
+shape = SubResource("RectangleShape2D_h183p")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameWorld/StaticBody2D"]
+position = Vector2(2112, 864)
+shape = SubResource("RectangleShape2D_0e35y")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="GameWorld/StaticBody2D"]
+position = Vector2(2400, 864)
+shape = SubResource("RectangleShape2D_0e35y")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameWorld/StaticBody2D"]
+polygon = PackedVector2Array(1656, 608, 1656, 536, 1728, 536, 1728, 496, 1792, 496, 1792, 456, 1984, 456, 1888, 664)
+
 [node name="Camera2D" type="Camera2D" parent="GameWorld"]
 position = Vector2(574, 322)
 position_smoothing_enabled = true
 
-[node name="CollectableMice" parent="GameWorld" instance=ExtResource("2_v5ayp")]
+[node name="Mices" type="Node2D" parent="GameWorld"]
+
+[node name="CollectableMice" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
 position = Vector2(809, 558)
 
-[node name="FocusPointActivator" parent="GameWorld" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
-position = Vector2(691, 585)
+[node name="CollectableMice2" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+position = Vector2(1368, 568)
+
+[node name="CollectableMice3" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+position = Vector2(1920, 432)
+
+[node name="CollectableMice4" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+position = Vector2(2408, 792)
+
+[node name="FocusPoints" type="Node2D" parent="GameWorld"]
+
+[node name="FocusPointActivator" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+position = Vector2(688, 584)
 _focus_point = NodePath("../FocusPoint")
 
-[node name="FocusPoint" parent="GameWorld" instance=ExtResource("3_cmmvb")]
+[node name="FocusPointActivator2" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+position = Vector2(1128, 584)
+_focus_point = NodePath("../FocusPoint2")
+
+[node name="FocusPointActivator3" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+position = Vector2(1368, 576)
+_focus_point = NodePath("../FocusPoint3")
+
+[node name="FocusPointActivator4" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+position = Vector2(1888, 456)
+_focus_point = NodePath("../FocusPoint4")
+
+[node name="FocusPoint" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
 position = Vector2(1002, 304)
+
+[node name="FocusPoint2" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+position = Vector2(1408, 304)
+
+[node name="FocusPoint3" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+position = Vector2(1816, 280)
+
+[node name="FocusPoint4" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+position = Vector2(2344, 544)
+
+[node name="Checkpoints" type="Node2D" parent="GameWorld"]
+
+[node name="Checkpoint" parent="GameWorld/Checkpoints" instance=ExtResource("5_t3b3h")]
+position = Vector2(688, 480)
+_is_active = true
+
+[node name="Checkpoint2" parent="GameWorld/Checkpoints" instance=ExtResource("5_t3b3h")]
+position = Vector2(1128, 480)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="MicesCounter" parent="HUD" instance=ExtResource("5_e3qwk")]
+
+[connection signal="screen_exited" from="GameWorld/Hero/VisibleOnScreenNotifier2D" to="GameWorld/Hero" method="take_damage" binds= [100]]
