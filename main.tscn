@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://jo0dsnocvbvr"]
+[gd_scene load_steps=11 format=3 uid="uid://jo0dsnocvbvr"]
 
 [ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="1_e5tw0"]
 [ext_resource type="PackedScene" uid="uid://1d0eabr5vtnp" path="res://modules/collectable_mice/collectable_mice.tscn" id="2_v5ayp"]
-[ext_resource type="Script" path="res://modules/hero_to_checkpoint_returner/hero_to_checkpoint_returner.gd" id="2_vvsg0"]
 [ext_resource type="PackedScene" uid="uid://dcf05yqxu2sp" path="res://modules/camera_focusing/focus_point_activator.tscn" id="2_wxlut"]
 [ext_resource type="PackedScene" uid="uid://bbhs4041re2j2" path="res://modules/camera_focusing/focus_point.tscn" id="3_cmmvb"]
 [ext_resource type="PackedScene" uid="uid://ukpcm1k1a78o" path="res://modules/ui/hud/mices_counter.tscn" id="5_e3qwk"]
@@ -27,13 +26,6 @@ position = Vector2(616, 528)
 rotation = 0.254395
 scale = Vector2(0.999985, 0.999985)
 metadata/_edit_group_ = true
-
-[node name="ToCheckpointReturner" type="Node" parent="GameWorld/Hero" node_paths=PackedStringArray("_hero")]
-script = ExtResource("2_vvsg0")
-_hero = NodePath("..")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="GameWorld/Hero"]
-rect = Rect2(-10, -40.045, 20, 83.065)
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld"]
 position = Vector2(574, 322)
@@ -140,5 +132,3 @@ position = Vector2(1592, 320)
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="MicesCounter" parent="HUD" instance=ExtResource("5_e3qwk")]
-
-[connection signal="screen_exited" from="GameWorld/Hero/VisibleOnScreenNotifier2D" to="GameWorld/Hero" method="take_damage" binds= [100]]
