@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmsl2gyy7eu4b"]
+
+[ext_resource type="PackedScene" uid="uid://bfut624s83h1e" path="res://modules/checkpoint/checkpoint.tscn" id="1_04vab"]
+[ext_resource type="PackedScene" uid="uid://dcf05yqxu2sp" path="res://modules/camera_focusing/focus_point_activator.tscn" id="1_aqxtr"]
+[ext_resource type="PackedScene" uid="uid://bbhs4041re2j2" path="res://modules/camera_focusing/focus_point.tscn" id="2_708nb"]
+[ext_resource type="PackedScene" uid="uid://1d0eabr5vtnp" path="res://modules/collectable_mice/collectable_mice.tscn" id="3_jgia3"]
+[ext_resource type="PackedScene" uid="uid://dn7qsm0n5ju31" path="res://modules/breakable_wall/breakable_wall.tscn" id="4_atmxr"]
+
+[node name="Template" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("1_04vab")]
+
+[node name="FocusPoints" type="Node2D" parent="."]
+
+[node name="FocusPointActivator" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("1_aqxtr")]
+_focus_point = NodePath("../FocusPoint")
+
+[node name="FocusPoint" parent="FocusPoints" instance=ExtResource("2_708nb")]
+
+[node name="Mices" type="Node2D" parent="."]
+
+[node name="CollectableMice" parent="Mices" instance=ExtResource("3_jgia3")]
+
+[node name="BreakableWalls" type="Node2D" parent="."]
+
+[node name="BreakableWall" parent="BreakableWalls" instance=ExtResource("4_atmxr")]
