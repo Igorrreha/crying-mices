@@ -42,17 +42,16 @@ position = Vector2(0, -40)
 [node name="BottomPoint" type="Marker2D" parent="."]
 position = Vector2(0, 44)
 
-[node name="Node" type="Node" parent="."]
+[node name="DebugToolsContainer" type="Node" parent="."]
 
-[node name="DebugTool" type="Node2D" parent="Node" node_paths=PackedStringArray("_hero", "_top_point", "_bottom_point", "_raycast")]
+[node name="DebugTool" type="Node2D" parent="DebugToolsContainer" node_paths=PackedStringArray("_top_point", "_bottom_point", "_raycast")]
 scale = Vector2(0.999939, 0.999939)
 script = ExtResource("3_l3blg")
-_hero = NodePath("../..")
 _deactivate_on_run = true
 _is_active = true
 _top_point = NodePath("../../TopPoint")
 _bottom_point = NodePath("../../BottomPoint")
 _raycast = NodePath("RayCast2D")
 
-[node name="RayCast2D" type="RayCast2D" parent="Node/DebugTool"]
+[node name="RayCast2D" type="RayCast2D" parent="DebugToolsContainer/DebugTool"]
 target_position = Vector2(0, 500)

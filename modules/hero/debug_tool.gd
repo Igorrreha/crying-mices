@@ -2,7 +2,6 @@
 extends Node2D
 
 
-@export var _hero: Hero
 @export var _draw_mode: DrawMode = DrawMode.FLOATING:
 	set(v):
 		if v == DrawMode.ON_JUMP and not _hero.jumped.is_connected(_on_hero_jumped):
@@ -28,6 +27,8 @@ var _prev_hero_transform: Transform2D
 var _draw_points: Array[Vector2]
 
 var _draw_colors: Array = [Color.RED, Color.BLUE]
+
+@onready var _hero: Hero = $"../.."
 
 
 func _ready() -> void:
@@ -67,7 +68,7 @@ func _draw() -> void:
 
 
 func _draw_jump_path(offset: Vector2, jump_force: float, color: Color, weight: float) -> void:
-	var hero_jump_vector = Vector2.UP.rotated(_hero.rotation) * jump_force
+	var hero_jump_vector = Vector2.UP.rotated(_hero.global_rotation) * jump_force
 	var jump_path = _get_jump_path(hero_jump_vector, 1.5)
 	
 	_draw_path(jump_path, offset, color, weight)
@@ -79,10 +80,10 @@ func _physics_process(delta: float) -> void:
 	
 	match _draw_mode:
 		DrawMode.FLOATING:
-			if _prev_hero_transform == _hero.transform:
+			if _prev_hero_transform == _hero.global_transform:
 				return
 			
-			_prev_hero_transform = _hero.transform
+			_prev_hero_transform = _hero.global_transform
 			_draw_points = [_bottom_point.global_position, _top_point.global_position]
 		
 		DrawMode.FROM_PREDICTED_JUMP_POINT:
