@@ -2,12 +2,13 @@ class_name Checkpoint
 extends Area2D
 
 
-@export var _is_active: bool
+@export var is_active: bool
+@export var _signals_channel: CheckpointsSignalsChannel
 
 static var _active_checkpoint: Checkpoint:
 	set(v):
 		for instance in _instances:
-			if instance != v:
+			if instance != v and instance.is_active:
 				instance.deactivate()
 		
 		if v == null:
@@ -23,15 +24,16 @@ static func get_active_checkpoint() -> Checkpoint:
 
 
 func activate() -> void:
-	if _is_active:
+	if is_active:
 		return
 	
-	_is_active = true
+	is_active = true
 	_active_checkpoint = self
+	_signals_channel.checkpoint_activated.emit()
 
 
 func deactivate() -> void:
-	_is_active = false
+	is_active = false
 	if _active_checkpoint == self:
 		_active_checkpoint = null
 
@@ -39,7 +41,7 @@ func deactivate() -> void:
 func _ready():
 	_instances.append(self)
 	
-	if _is_active:
+	if is_active:
 		activate()
 	
 	body_entered.connect(activate.unbind(1))

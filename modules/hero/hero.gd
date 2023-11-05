@@ -62,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	_update_rotation()
 	
 	if _immovable:
+		velocity = Vector2.ZERO
 		return
 	
 	_apply_gravity(delta)
@@ -101,6 +102,7 @@ func _on_flip_end(angle_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
+		_cur_jump_type = JumpType.DEFAULT
 		_immovable = false
 
 

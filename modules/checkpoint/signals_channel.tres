@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CheckpointsSignalsChannel" load_steps=2 format=3 uid="uid://c7803ogi3ar6e"]
+
+[ext_resource type="Script" path="res://modules/checkpoint/signals_channel.gd" id="1_d6cwq"]
+
+[resource]
+resource_name = "checkpoint"
+script = ExtResource("1_d6cwq")

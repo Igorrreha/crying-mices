@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn7qsm0n5ju31"]
+[gd_scene load_steps=4 format=3 uid="uid://dn7qsm0n5ju31"]
 
 [ext_resource type="Script" path="res://modules/breakable_wall/breakable_wall.gd" id="1_a5pbf"]
+[ext_resource type="Resource" uid="uid://c7803ogi3ar6e" path="res://modules/checkpoint/signals_channel.tres" id="2_djmr5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6pfe"]
 size = Vector2(100, 20)
@@ -8,6 +9,7 @@ size = Vector2(100, 20)
 [node name="BreakableWall" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_a5pbf")
+_checkpoints_signals_channel = ExtResource("2_djmr5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j6pfe")

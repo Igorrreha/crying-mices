@@ -17,7 +17,7 @@ _pogo_jump_pad_area = NodePath("PogoJumpPad")
 _flip_recognizer = NodePath("FlipRecognizer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-4, 32, -12, -16, -12, -40, 12, -40, 12, -16, 4, 32)
+polygon = PackedVector2Array(-4.00024, 32.0019, -12, -16, -12, -40, 12, -40, 12, -16, 4.00024, 32.0019, 3.00018, 40.0024, 0, 43.0026, -3.00018, 40.0024)
 
 [node name="PogoJumpPad" type="Area2D" parent="."]
 position = Vector2(0, 44)

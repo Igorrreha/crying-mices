@@ -1,0 +1,5 @@
+class_name CheckpointsSignalsChannel
+extends SignalsChannel
+
+
+signal checkpoint_activated
