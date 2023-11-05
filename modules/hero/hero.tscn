@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2fnksqpgra2i"]
+[gd_scene load_steps=6 format=3 uid="uid://b2fnksqpgra2i"]
 
 [ext_resource type="Script" path="res://modules/hero/hero.gd" id="1_acjp8"]
 [ext_resource type="Script" path="res://modules/flip_recognizer/flip_recognizer.gd" id="2_tprou"]
+[ext_resource type="Resource" uid="uid://b1i2xo836w05d" path="res://modules/hero/signals_channel.tres" id="2_ybkpf"]
 [ext_resource type="Script" path="res://modules/hero/debug_tool.gd" id="3_l3blg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m233c"]
@@ -13,6 +14,7 @@ scale = Vector2(0.999939, 0.999939)
 collision_layer = 2
 velocity = Vector2(0, 872037)
 script = ExtResource("1_acjp8")
+_signals_channel = ExtResource("2_ybkpf")
 _pogo_jump_pad_area = NodePath("PogoJumpPad")
 _flip_recognizer = NodePath("FlipRecognizer")
 
@@ -32,6 +34,7 @@ script = ExtResource("2_tprou")
 _observable_object = NodePath("..")
 _start_flip_signal = &"jumped"
 _end_flip_signal = &"jumped"
+_cancel_flip_signal = &"became_movable"
 
 [node name="TopPoint" type="Marker2D" parent="."]
 position = Vector2(0, -40)

@@ -8,6 +8,7 @@ signal flip_ended(angle_delta: float)
 @export var _observable_object: Node2D
 @export var _start_flip_signal: StringName
 @export var _end_flip_signal: StringName
+@export var _cancel_flip_signal: StringName
 
 
 var _flip_in_process: bool
@@ -20,11 +21,13 @@ var _flip_delta: float
 func _ready() -> void:
 	_observable_object.connect(_end_flip_signal, _on_flip_ended)
 	_observable_object.connect(_start_flip_signal, _on_flip_started)
+	_observable_object.connect(_cancel_flip_signal, _on_flip_cancelled)
 
 
 func _exit_tree() -> void:
 	_observable_object.disconnect(_start_flip_signal, _on_flip_started)
 	_observable_object.disconnect(_end_flip_signal, _on_flip_ended)
+	_observable_object.disconnect(_cancel_flip_signal, _on_flip_cancelled)
 
 
 func _process(delta: float) -> void:
@@ -56,3 +59,8 @@ func _on_flip_ended() -> void:
 	_flip_in_process = false
 	
 	flip_ended.emit(_flip_delta)
+
+
+func _on_flip_cancelled() -> void:
+	_flip_in_process = false
+	_flip_delta = 0

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HeroSignalsChannel" load_steps=2 format=3 uid="uid://b1i2xo836w05d"]
+
+[ext_resource type="Script" path="res://modules/hero/signals_channel.gd" id="1_5c3mm"]
+
+[resource]
+resource_name = "hero"
+script = ExtResource("1_5c3mm")

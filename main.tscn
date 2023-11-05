@@ -23,8 +23,8 @@ size = Vector2(116, 112)
 [node name="GameWorld" type="Node2D" parent="."]
 
 [node name="Hero" parent="GameWorld" instance=ExtResource("1_e5tw0")]
-position = Vector2(680, 488)
-rotation = 0.104916
+position = Vector2(616, 528)
+rotation = 0.254395
 scale = Vector2(0.999985, 0.999985)
 metadata/_edit_group_ = true
 
@@ -35,104 +35,106 @@ _hero = NodePath("..")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="GameWorld/Hero"]
 rect = Rect2(-10, -40.045, 20, 83.065)
 
-[node name="Walls" type="StaticBody2D" parent="GameWorld"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Walls"]
-position = Vector2(596, 633)
-shape = SubResource("RectangleShape2D_aeee2")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameWorld/Walls"]
-position = Vector2(1363, 635)
-shape = SubResource("RectangleShape2D_h183p")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="GameWorld/Walls"]
-position = Vector2(1448, 336)
-shape = SubResource("RectangleShape2D_h183p")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameWorld/Walls"]
-position = Vector2(1593, 636)
-shape = SubResource("RectangleShape2D_h183p")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameWorld/Walls"]
-position = Vector2(2112, 864)
-shape = SubResource("RectangleShape2D_0e35y")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="GameWorld/Walls"]
-position = Vector2(2400, 864)
-shape = SubResource("RectangleShape2D_0e35y")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameWorld/Walls"]
-polygon = PackedVector2Array(1656, 608, 1656, 536, 1728, 536, 1728, 496, 1792, 496, 1792, 456, 1984, 456, 1888, 664)
-
 [node name="Camera2D" type="Camera2D" parent="GameWorld"]
 position = Vector2(574, 322)
 position_smoothing_enabled = true
 
-[node name="Mices" type="Node2D" parent="GameWorld"]
+[node name="Level" type="Node2D" parent="GameWorld"]
 
-[node name="CollectableMice" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+[node name="Walls" type="StaticBody2D" parent="GameWorld/Level"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Level/Walls"]
+position = Vector2(596, 633)
+shape = SubResource("RectangleShape2D_aeee2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameWorld/Level/Walls"]
+position = Vector2(1363, 635)
+shape = SubResource("RectangleShape2D_h183p")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="GameWorld/Level/Walls"]
+position = Vector2(1448, 336)
+shape = SubResource("RectangleShape2D_h183p")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameWorld/Level/Walls"]
+position = Vector2(1593, 636)
+shape = SubResource("RectangleShape2D_h183p")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameWorld/Level/Walls"]
+position = Vector2(2112, 864)
+shape = SubResource("RectangleShape2D_0e35y")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="GameWorld/Level/Walls"]
+position = Vector2(2400, 864)
+shape = SubResource("RectangleShape2D_0e35y")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameWorld/Level/Walls"]
+polygon = PackedVector2Array(1656, 608, 1656, 536, 1728, 536, 1728, 496, 1792, 496, 1792, 456, 1984, 456, 1888, 664)
+
+[node name="Mices" type="Node2D" parent="GameWorld/Level"]
+
+[node name="CollectableMice" parent="GameWorld/Level/Mices" instance=ExtResource("2_v5ayp")]
 position = Vector2(809, 558)
 
-[node name="CollectableMice2" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+[node name="CollectableMice2" parent="GameWorld/Level/Mices" instance=ExtResource("2_v5ayp")]
 position = Vector2(1368, 568)
 
-[node name="CollectableMice5" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+[node name="CollectableMice5" parent="GameWorld/Level/Mices" instance=ExtResource("2_v5ayp")]
 position = Vector2(1456, 272)
 
-[node name="CollectableMice3" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+[node name="CollectableMice3" parent="GameWorld/Level/Mices" instance=ExtResource("2_v5ayp")]
 position = Vector2(1920, 432)
 
-[node name="CollectableMice4" parent="GameWorld/Mices" instance=ExtResource("2_v5ayp")]
+[node name="CollectableMice4" parent="GameWorld/Level/Mices" instance=ExtResource("2_v5ayp")]
 position = Vector2(2408, 792)
 
-[node name="FocusPoints" type="Node2D" parent="GameWorld"]
+[node name="FocusPoints" type="Node2D" parent="GameWorld/Level"]
 
-[node name="FocusPointActivator" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+[node name="FocusPointActivator" parent="GameWorld/Level/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
 position = Vector2(688, 584)
 _focus_point = NodePath("../FocusPoint")
 
-[node name="FocusPointActivator2" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+[node name="FocusPointActivator2" parent="GameWorld/Level/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
 position = Vector2(1128, 584)
 _focus_point = NodePath("../FocusPoint2")
 
-[node name="FocusPointActivator3" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+[node name="FocusPointActivator3" parent="GameWorld/Level/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
 position = Vector2(1368, 576)
 _focus_point = NodePath("../FocusPoint3")
 
-[node name="FocusPointActivator4" parent="GameWorld/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
+[node name="FocusPointActivator4" parent="GameWorld/Level/FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_wxlut")]
 position = Vector2(1968, 456)
 _focus_point = NodePath("../FocusPoint4")
 
-[node name="FocusPoint" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+[node name="FocusPoint" parent="GameWorld/Level/FocusPoints" instance=ExtResource("3_cmmvb")]
 position = Vector2(1002, 304)
 
-[node name="FocusPoint2" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+[node name="FocusPoint2" parent="GameWorld/Level/FocusPoints" instance=ExtResource("3_cmmvb")]
 position = Vector2(1408, 304)
 
-[node name="FocusPoint3" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+[node name="FocusPoint3" parent="GameWorld/Level/FocusPoints" instance=ExtResource("3_cmmvb")]
 position = Vector2(1816, 280)
 
-[node name="FocusPoint4" parent="GameWorld/FocusPoints" instance=ExtResource("3_cmmvb")]
+[node name="FocusPoint4" parent="GameWorld/Level/FocusPoints" instance=ExtResource("3_cmmvb")]
 position = Vector2(2344, 544)
 
-[node name="Checkpoints" type="Node2D" parent="GameWorld"]
+[node name="Checkpoints" type="Node2D" parent="GameWorld/Level"]
 
-[node name="Checkpoint" parent="GameWorld/Checkpoints" instance=ExtResource("5_t3b3h")]
+[node name="Checkpoint" parent="GameWorld/Level/Checkpoints" instance=ExtResource("5_t3b3h")]
 position = Vector2(688, 480)
 is_active = true
 
-[node name="Checkpoint2" parent="GameWorld/Checkpoints" instance=ExtResource("5_t3b3h")]
+[node name="Checkpoint2" parent="GameWorld/Level/Checkpoints" instance=ExtResource("5_t3b3h")]
 position = Vector2(1128, 480)
 
-[node name="Checkpoint3" parent="GameWorld/Checkpoints" instance=ExtResource("5_t3b3h")]
+[node name="Checkpoint3" parent="GameWorld/Level/Checkpoints" instance=ExtResource("5_t3b3h")]
 position = Vector2(960, 480)
 
-[node name="BreakableWalls" type="Node2D" parent="GameWorld"]
+[node name="BreakableWalls" type="Node2D" parent="GameWorld/Level"]
 
-[node name="BreakableWall" parent="GameWorld/BreakableWalls" instance=ExtResource("7_5q3h0")]
+[node name="BreakableWall" parent="GameWorld/Level/BreakableWalls" instance=ExtResource("7_5q3h0")]
 position = Vector2(1648, 344)
 
-[node name="BreakableWall3" parent="GameWorld/BreakableWalls" instance=ExtResource("7_5q3h0")]
+[node name="BreakableWall3" parent="GameWorld/Level/BreakableWalls" instance=ExtResource("7_5q3h0")]
 position = Vector2(1592, 320)
 
 [node name="HUD" type="CanvasLayer" parent="."]

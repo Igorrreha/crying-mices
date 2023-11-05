@@ -10,11 +10,16 @@ signal double_frontfliped
 
 signal dead
 
+signal became_movable
 
+
+@export var _dummy: bool
 @export var _hp: int
 @export var _jump_0_force = 350.0
 @export var _jump_1_force = 450.0
 @export var _jump_2_force = 550.0
+
+@export var _signals_channel: HeroSignalsChannel
 
 @export_group("Components")
 @export var _pogo_jump_pad_area: Area2D
@@ -23,7 +28,11 @@ signal dead
 var _gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _cur_jump_type: JumpType
 
-var _immovable: bool = true
+var _immovable: bool = true:
+	set(v):
+		if v == false:
+			became_movable.emit()
+		_immovable = v
 
 
 func become_immovable() -> void:
@@ -35,9 +44,13 @@ func take_damage(amount: int) -> void:
 	_hp = clamp(_hp - amount, 0, INF)
 	if _hp == 0:
 		dead.emit()
+		_signals_channel.dead.emit()
 
 
 func _ready() -> void:
+	if _dummy:
+		queue_free()
+	
 	_pogo_jump_pad_area.body_entered.connect(_jump.unbind(1))
 	_flip_recognizer.flip_ended.connect(_on_flip_end)
 
@@ -86,8 +99,6 @@ func _on_flip_end(angle_delta: float) -> void:
 		else:
 			frontfliped.emit()
 			_cur_jump_type = JumpType.SUPER
-		
-		print("f")
 	
 	if angle_delta < -PI:
 		if angle_delta < -PI * 3:
@@ -96,8 +107,6 @@ func _on_flip_end(angle_delta: float) -> void:
 		else:
 			backfliped.emit()
 			_cur_jump_type = JumpType.SUPER
-		
-		print("b")
 
 
 func _input(event: InputEvent) -> void:
