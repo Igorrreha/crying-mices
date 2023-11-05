@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=3 uid="uid://cswmjdmrs0agr"]
+
+[ext_resource type="PackedScene" uid="uid://bfut624s83h1e" path="res://modules/checkpoint/checkpoint.tscn" id="1_tpj55"]
+[ext_resource type="PackedScene" uid="uid://dcf05yqxu2sp" path="res://modules/camera_focusing/focus_point_activator.tscn" id="2_74qx5"]
+[ext_resource type="PackedScene" uid="uid://bbhs4041re2j2" path="res://modules/camera_focusing/focus_point.tscn" id="3_ba35l"]
+[ext_resource type="PackedScene" uid="uid://1d0eabr5vtnp" path="res://modules/collectable_mice/collectable_mice.tscn" id="4_twsol"]
+[ext_resource type="PackedScene" uid="uid://dn7qsm0n5ju31" path="res://modules/breakable_wall/breakable_wall.tscn" id="5_vpu5y"]
+[ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="6_21iyq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpso1"]
+size = Vector2(64, 32)
+
+[node name="Template" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(32, 624)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(128, 624)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(224, 624)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(320, 624)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(416, 624)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(512, 624)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(32, 944)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(160, 944)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Walls"]
+position = Vector2(288, 944)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Walls"]
+position = Vector2(32, 1200)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Walls"]
+position = Vector2(192, 1200)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Walls"]
+position = Vector2(32, 1392)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Walls"]
+position = Vector2(208, 1392)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Walls"]
+position = Vector2(384, 1392)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Walls"]
+position = Vector2(352, 1200)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Walls"]
+position = Vector2(416, 944)
+shape = SubResource("RectangleShape2D_fpso1")
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("1_tpj55")]
+position = Vector2(32, 528)
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("1_tpj55")]
+position = Vector2(32, 832)
+
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("1_tpj55")]
+position = Vector2(32, 1084)
+
+[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("1_tpj55")]
+position = Vector2(32, 1296)
+
+[node name="FocusPoints" type="Node2D" parent="."]
+
+[node name="FocusPointActivator" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_74qx5")]
+_focus_point = NodePath("../FocusPoint")
+
+[node name="FocusPoint" parent="FocusPoints" instance=ExtResource("3_ba35l")]
+
+[node name="Camera2D" type="Camera2D" parent="FocusPoints"]
+position = Vector2(244, 1200)
+
+[node name="Mices" type="Node2D" parent="."]
+
+[node name="CollectableMice" parent="Mices" instance=ExtResource("4_twsol")]
+
+[node name="BreakableWalls" type="Node2D" parent="."]
+
+[node name="BreakableWall" parent="BreakableWalls" instance=ExtResource("5_vpu5y")]
+position = Vector2(0, 8)
+
+[node name="DummyHeroContainer" type="Node2D" parent="."]
+position = Vector2(64, 716)
+metadata/_edit_group_ = true
+
+[node name="Hero" parent="DummyHeroContainer" instance=ExtResource("6_21iyq")]
+position = Vector2(-32, 584)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 248.0
+offset_top = 348.0
+offset_right = 363.0
+offset_bottom = 374.0
+text = "Default jump"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -128.0
+offset_top = 612.0
+offset_right = -26.0
+offset_bottom = 638.0
+text = "Noob"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -128.0
+offset_top = 932.0
+offset_right = -26.0
+offset_bottom = 958.0
+text = "Normal"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = -136.0
+offset_top = 1184.0
+offset_right = -34.0
+offset_bottom = 1210.0
+text = "Hard"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = -144.0
+offset_top = 1376.0
+offset_right = -42.0
+offset_bottom = 1402.0
+text = "Master"
