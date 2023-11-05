@@ -1,0 +1,626 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmbuiil38ero2"]
+
+[ext_resource type="PackedScene" uid="uid://bfut624s83h1e" path="res://modules/checkpoint/checkpoint.tscn" id="1_5q8ga"]
+[ext_resource type="PackedScene" uid="uid://dcf05yqxu2sp" path="res://modules/camera_focusing/focus_point_activator.tscn" id="2_2b3mm"]
+[ext_resource type="PackedScene" uid="uid://bbhs4041re2j2" path="res://modules/camera_focusing/focus_point.tscn" id="3_5tfr5"]
+[ext_resource type="PackedScene" uid="uid://1d0eabr5vtnp" path="res://modules/collectable_mice/collectable_mice.tscn" id="4_8w8vm"]
+[ext_resource type="PackedScene" uid="uid://dn7qsm0n5ju31" path="res://modules/breakable_wall/breakable_wall.tscn" id="5_pgip6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmrfg"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwc3x"]
+size = Vector2(64, 32)
+
+[node name="WholeGameLevel" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(4, 128, 64, 128, 64, 480, 864, 480, 864, 448, 992, 448, 992, 480, 1280, 480, 1216, 760, -100, 696)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(1344, 480, 1488, 764, 1704, 816, 1792, 480)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(2336, 448, 2440, 812, 3068, 992, 3124, 632, 3281.95, 525.984, 3360, 352, 3240, 368, 3168, 352, 3040, 372, 3048, 400, 3072, 404, 3048, 420, 3060, 448, 2752, 448, 2724, 404, 2720, 352, 2656, 352, 2656, 384, 2624, 384, 2624, 416, 2592, 416, 2592, 448)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(-56, -188)
+polygon = PackedVector2Array(3552, 672, 3552, 1416, 3840, 1344, 3840, 672, 3648, 660)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(568, 224)
+polygon = PackedVector2Array(3552, 672, 3552, 936, 3840, 952, 3840, 672, 3648, 660)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(568, 224)
+polygon = PackedVector2Array(4348, 668, 4348, 956, 4476, 956, 4744, 744, 4840, 528, 4728, 528, 4712, 576, 4648, 560, 4648, 608, 4584, 596, 4592, 656)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(672, 224)
+polygon = PackedVector2Array(4936, 528, 4936, 1008, 5024, 1008, 5024, 528)
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(904, 224)
+polygon = PackedVector2Array(4936, 528, 4936, 1008, 4992, 1008, 5092, 528)
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(904, 224)
+polygon = PackedVector2Array(5620, 524, 5668, 564, 5708, 672, 5708, 872, 6136, 860, 6156, 740, 6036, 740, 6040, 704, 5972, 704, 5976, 608, 5936, 608, 5940, 524)
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(904, 224)
+polygon = PackedVector2Array(6276, 736, 6296, 864, 6712, 896, 6712, 640, 6524, 640, 6528, 672, 6456, 672, 6456, 704, 6392, 704, 6396, 736)
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(904, 224)
+polygon = PackedVector2Array(6860, 640, 6864, 900, 6896, 900, 6904, 640)
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1088, 224)
+polygon = PackedVector2Array(6864, 640, 6876, 716, 6996, 856, 6992, 2108, 7764, 2156, 7888, 1828, 8032, 1660, 8032, 1568, 8000, 1552, 7936, 1552, 7912, 1516, 7916, 1452, 7984, 1304, 8132, 1252, 8288, 1248, 8288, 1184, 8132, 1183.72, 8132, 640)
+
+[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1088, 224)
+polygon = PackedVector2Array(8164, 640, 8384, 640, 8384, 680, 8448, 704, 8448, 748, 8512, 768, 8512, 804, 8632, 832, 8632, 640, 8748, 640, 8748, 420, 8692, 328, 8828, 412, 8876, 828, 8844, 1108, 8636, 1132, 8552, 1320, 8488, 1268, 8440, 1408, 8396, 988, 8336, 892, 8228, 836, 8164, 860)
+
+[node name="CollisionPolygon2D14" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1088, 224)
+polygon = PackedVector2Array(8196, 1568, 8108, 1600, 8064, 1644, 8064, 1568)
+
+[node name="CollisionPolygon2D15" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1020, 232)
+polygon = PackedVector2Array(8580, 1816, 8588, 2048, 8900, 2064, 8900, 1816)
+
+[node name="CollisionPolygon2D16" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1020, 232)
+polygon = PackedVector2Array(9348, 1804, 9348, 2116, 10012, 2700, 10308, 2368, 10432, 1912, 10208, 1912, 10252, 2412, 9964, 2472, 9992, 2184, 10020, 1816, 9964, 1816, 9984, 2124, 9984, 2200, 9796, 2216, 9812, 2108, 9868, 1728, 9736, 1728, 9800, 2152, 9688, 2172, 9700, 1764, 9668, 1764, 9680, 2168, 9568, 2172, 9616, 1800)
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(972, 244)
+polygon = PackedVector2Array(11064, 1880, 11064, 2364, 11268, 2364, 11268, 1880)
+
+[node name="CollisionPolygon2D18" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1828, 260)
+polygon = PackedVector2Array(11064, 1880, 11064, 2364, 11268, 2364, 11268, 1880)
+
+[node name="CollisionPolygon2D19" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(2400, 256)
+polygon = PackedVector2Array(11064, 1880, 11064, 2364, 11676, 2368, 11676, 1764, 11480, 1764, 11480, 1844, 11372, 1844, 11372, 1880)
+
+[node name="CollisionPolygon2D20" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(2928, 372)
+polygon = PackedVector2Array(11368, 1644, 12772, 1644, 12660, 2252, 12024, 2292, 11372, 1992)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1884, 512)
+rotation = 0.120555
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(4548, 924)
+rotation = 0.0763641
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(4812, 920)
+rotation = -0.0767945
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2016, 528)
+rotation = 0.0637438
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2148, 524)
+rotation = -0.116923
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2268, 496)
+rotation = -0.384678
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(6444, 776)
+rotation = -0.129974
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(6256, 784)
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Walls"]
+position = Vector2(7120, 788)
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Walls"]
+position = Vector2(9136, 2068)
+rotation = 0.115658
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Walls"]
+position = Vector2(9292, 2076)
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Walls"]
+position = Vector2(9492, 2072)
+rotation = -0.0483263
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Walls"]
+position = Vector2(10012, 2068)
+rotation = 0.0415816
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Walls"]
+position = Vector2(11552, 2168)
+rotation = 0.0415816
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="Walls"]
+position = Vector2(13196, 2164)
+rotation = 0.0671947
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Walls"]
+position = Vector2(11808, 2176)
+rotation = -0.0614197
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Walls"]
+position = Vector2(11680, 2176)
+rotation = 0.0389757
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Walls"]
+position = Vector2(11936, 2160)
+rotation = -0.175128
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Walls"]
+position = Vector2(12572, 2168)
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="Walls"]
+position = Vector2(12400, 2160)
+rotation = 0.0880435
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="Walls"]
+position = Vector2(12740, 2164)
+rotation = -0.0433347
+shape = SubResource("RectangleShape2D_gmrfg")
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(216, 384)
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(928, 352)
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(1632, 380)
+
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(2472, 348)
+
+[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(3240, 268)
+
+[node name="Checkpoint19" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(3656, 376)
+
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(4268, 800)
+
+[node name="Checkpoint7" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(5024, 788)
+
+[node name="Checkpoint8" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(5344, 652)
+
+[node name="Checkpoint9" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(5924, 652)
+
+[node name="Checkpoint10" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(6696, 648)
+
+[node name="Checkpoint11" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(7548, 764)
+
+[node name="Checkpoint12" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(8104, 768)
+
+[node name="Checkpoint13" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(9020, 764)
+
+[node name="Checkpoint14" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(9304, 1336)
+
+[node name="Checkpoint15" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(9056, 1672)
+
+[node name="Checkpoint16" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(9136, 1956)
+
+[node name="Checkpoint17" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(9812, 1948)
+
+[node name="Checkpoint18" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(10520, 1932)
+
+[node name="Checkpoint20" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(11352, 2044)
+
+[node name="Checkpoint21" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(12148, 2028)
+
+[node name="Checkpoint22" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(13008, 2044)
+
+[node name="Checkpoint23" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(13628, 2040)
+
+[node name="Checkpoint24" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(14460, 1920)
+
+[node name="Checkpoint25" parent="Checkpoints" instance=ExtResource("1_5q8ga")]
+position = Vector2(14912, 1928)
+
+[node name="FocusPoints" type="Node2D" parent="."]
+
+[node name="FPA0" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(216, 480)
+_focus_point = NodePath("../FP0")
+
+[node name="FPA1" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(928, 452)
+_focus_point = NodePath("../FP1")
+
+[node name="FPA2" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(1632, 480)
+_focus_point = NodePath("../FP2")
+
+[node name="FPA3" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(2472, 448)
+_focus_point = NodePath("../FP3")
+
+[node name="FPA4" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(3240, 368)
+_focus_point = NodePath("../FP4")
+
+[node name="FPA5" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(3656, 476)
+_focus_point = NodePath("../FP5")
+
+[node name="FPA6" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(4268, 892)
+_focus_point = NodePath("../FP6")
+
+[node name="FPA7" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(5024, 888)
+_focus_point = NodePath("../FP7")
+
+[node name="FPA8" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(5344, 752)
+_focus_point = NodePath("../FP8")
+
+[node name="FPA9" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(5924, 752)
+_focus_point = NodePath("../FP9")
+
+[node name="FPA10" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(6696, 748)
+_focus_point = NodePath("../FP10")
+
+[node name="FPA10B" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(7440, 864)
+_focus_point = NodePath("../FP10")
+
+[node name="FPA11" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(7548, 864)
+_focus_point = NodePath("../FP11")
+
+[node name="FPA12" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(8104, 868)
+_focus_point = NodePath("../FP12")
+
+[node name="FPA13" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(9020, 864)
+_focus_point = NodePath("../FP13")
+
+[node name="FPA14" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(9236, 1196)
+_focus_point = NodePath("../FP14")
+
+[node name="FPA15" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(9304, 1408)
+_focus_point = NodePath("../FP15")
+
+[node name="FPA16" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(9056, 1772)
+_focus_point = NodePath("../FP16")
+
+[node name="FPA20" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(9136, 2056)
+_focus_point = NodePath("../FP20")
+
+[node name="FPA17" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(9812, 2048)
+_focus_point = NodePath("../FP17")
+
+[node name="FPA18" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(10520, 2032)
+_focus_point = NodePath("../FP18")
+
+[node name="FPA19" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(11352, 2144)
+_focus_point = NodePath("../FP19")
+
+[node name="FPA21" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(12148, 2128)
+_focus_point = NodePath("../FP21")
+
+[node name="FPA22" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(13008, 2140)
+_focus_point = NodePath("../FP22")
+
+[node name="FPA23" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(13628, 2136)
+_focus_point = NodePath("../FP23")
+
+[node name="FPA24" parent="FocusPoints" node_paths=PackedStringArray("_focus_point") instance=ExtResource("2_2b3mm")]
+position = Vector2(14460, 2020)
+_focus_point = NodePath("../FP24")
+
+[node name="FP0" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(600, 340)
+
+[node name="FP1" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(1304, 340)
+
+[node name="FP2" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(2064, 412)
+
+[node name="FP3" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(2828, 336)
+
+[node name="FP4" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(3648, 496)
+
+[node name="FP5" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(4076, 624)
+
+[node name="FP6" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(4680, 796)
+
+[node name="FP7" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(5000, 752)
+
+[node name="FP8" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(5780, 672)
+
+[node name="FP9" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(6284, 648)
+
+[node name="FP10" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(7116, 728)
+
+[node name="FP11" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(7912, 728)
+
+[node name="FP12" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(8548, 716)
+
+[node name="FP13" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(9440, 864)
+
+[node name="FP14" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(9440, 1188)
+
+[node name="FP15" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(9440, 1512)
+
+[node name="FP16" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(9440, 1876)
+
+[node name="FP20" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(9440, 1948)
+
+[node name="FP17" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(10208, 1944)
+
+[node name="FP18" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(10900, 1984)
+
+[node name="FP19" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(11792, 2100)
+
+[node name="FP21" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(12568, 2100)
+
+[node name="FP22" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(13388, 2100)
+
+[node name="FP23" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(13984, 2020)
+
+[node name="FP24" parent="FocusPoints" instance=ExtResource("3_5tfr5")]
+position = Vector2(14912, 1872)
+
+[node name="Mices" type="Node2D" parent="."]
+
+[node name="CollectableMice" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(928, 432)
+
+[node name="CollectableMice4" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(1652, 464)
+
+[node name="CollectableMice5" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(2496, 436)
+
+[node name="CollectableMice6" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(3244, 352)
+
+[node name="CollectableMice7" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(4300, 876)
+
+[node name="CollectableMice9" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(5024, 872)
+
+[node name="CollectableMice10" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(5260, 768)
+
+[node name="CollectableMice11" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(5184, 808)
+
+[node name="CollectableMice12" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(5652, 732)
+
+[node name="CollectableMice13" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(5924, 740)
+
+[node name="CollectableMice14" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(6700, 728)
+
+[node name="CollectableMice15" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(7120, 756)
+
+[node name="CollectableMice16" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(7784, 840)
+
+[node name="CollectableMice17" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(8108, 844)
+
+[node name="CollectableMice18" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(8484, 848)
+
+[node name="CollectableMice19" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(8740, 844)
+
+[node name="CollectableMice20" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(8692, 848)
+
+[node name="CollectableMice21" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(9044, 840)
+
+[node name="CollectableMice22" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(9800, 2028)
+
+[node name="CollectableMice24" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(10524, 2012)
+
+[node name="CollectableMice25" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(11332, 2128)
+
+[node name="CollectableMice26" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(12144, 2104)
+
+[node name="CollectableMice27" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(13000, 2120)
+
+[node name="CollectableMice28" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(13628, 2116)
+
+[node name="CollectableMice29" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(13848, 2072)
+
+[node name="CollectableMice30" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(12092, 2100)
+
+[node name="CollectableMice31" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(14452, 1992)
+
+[node name="CollectableMice32" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(14524, 1992)
+
+[node name="CollectableMice33" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(14380, 1992)
+
+[node name="CollectableMice23" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(9800, 844)
+
+[node name="CollectableMice8" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(4228, 868)
+
+[node name="CollectableMice2" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(9056, 1768)
+
+[node name="CollectableMice3" parent="Mices" instance=ExtResource("4_8w8vm")]
+position = Vector2(9140, 2048)
+
+[node name="BreakableWalls" type="Node2D" parent="."]
+
+[node name="BreakableWall" parent="BreakableWalls" instance=ExtResource("5_pgip6")]
+position = Vector2(4684, 928)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="BreakableWall3" parent="BreakableWalls" instance=ExtResource("5_pgip6")]
+position = Vector2(6112, 780)
+rotation = 0.0610865
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall3" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall3/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="BreakableWall2" parent="BreakableWalls" instance=ExtResource("5_pgip6")]
+position = Vector2(5508, 776)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall2" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall2/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="BreakableWall4" parent="BreakableWalls" instance=ExtResource("5_pgip6")]
+position = Vector2(10144, 2072)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall4" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall4/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="BreakableWall5" parent="BreakableWalls" instance=ExtResource("5_pgip6")]
+position = Vector2(10276, 2064)
+rotation = -0.0787904
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall5" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall5/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="BreakableWall6" parent="BreakableWalls" instance=ExtResource("5_pgip6")]
+position = Vector2(13320, 2168)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall6" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[node name="CollisionShape2D" parent="BreakableWalls/BreakableWall6/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_lwc3x")
+
+[editable path="BreakableWalls/BreakableWall"]
+[editable path="BreakableWalls/BreakableWall3"]
+[editable path="BreakableWalls/BreakableWall2"]
+[editable path="BreakableWalls/BreakableWall4"]
+[editable path="BreakableWalls/BreakableWall5"]
+[editable path="BreakableWalls/BreakableWall6"]
