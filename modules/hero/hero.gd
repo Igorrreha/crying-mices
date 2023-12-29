@@ -34,6 +34,8 @@ var _immovable: bool = true:
 			became_movable.emit()
 		_immovable = v
 
+@onready var _default_jump_sfx_player: AudioStreamPlayer2D = $Jump0
+
 
 func become_immovable() -> void:
 	velocity = Vector2.ZERO
@@ -63,9 +65,13 @@ func _jump() -> void:
 		JumpType.SUPER:
 			jump_force = _jump_1_force
 			_cur_jump_type = JumpType.DEFAULT
+		
 		JumpType.ULTRA:
 			jump_force = _jump_2_force
 			_cur_jump_type = JumpType.DEFAULT
+		
+		_:
+			_default_jump_sfx_player.play()
 	
 	velocity = Vector2.UP.rotated(rotation) * jump_force
 	move_and_slide()

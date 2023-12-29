@@ -14,7 +14,21 @@ config/name="Crying mices"
 config/tags=PackedStringArray("game", "jam")
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://modules/ui/hud/mice_icon.png"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
+
+[gui]
+
+theme/custom="res://default_theme.tres"
+theme/custom_font="res://PixeloidMono.ttf"
 
 [input]
 
@@ -31,5 +45,6 @@ toggle_jump_debuger={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

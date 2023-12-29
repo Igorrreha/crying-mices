@@ -1,12 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://jo0dsnocvbvr"]
+[gd_scene load_steps=8 format=3 uid="uid://jo0dsnocvbvr"]
 
+[ext_resource type="Texture2D" uid="uid://dnhrgxl3y63us" path="res://modules/tiles/cactus.png" id="1_23f6j"]
 [ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="1_e5tw0"]
+[ext_resource type="PackedScene" uid="uid://d3wss5cdpkfn6" path="res://modules/gamestart_splashscreen/gamestart_splashscreen.tscn" id="1_lw76o"]
 [ext_resource type="PackedScene" uid="uid://cmbuiil38ero2" path="res://modules/levels/game_level.tscn" id="2_irti5"]
+[ext_resource type="AudioStream" uid="uid://b8ixjj63gpe3t" path="res://modules/music/wind.ogg" id="3_cooie"]
 [ext_resource type="PackedScene" uid="uid://ukpcm1k1a78o" path="res://modules/ui/hud/mices_counter.tscn" id="5_e3qwk"]
+[ext_resource type="Texture2D" uid="uid://b50k0bepwr5wp" path="res://modules/tiles/house.png" id="6_wxlm2"]
 
 [node name="Main" type="Node"]
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ColorRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.592157, 0.72549, 0.788235, 1)
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(1, 0.9)
+
+[node name="Background" type="ColorRect" parent="ParallaxBackground2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -784.0
+offset_top = 400.0
+offset_right = 112.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.537255, 0.65098, 0.619608, 1)
+
+[node name="ParallaxBackground3" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(1, 0.7)
+
+[node name="Background" type="ColorRect" parent="ParallaxBackground3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -784.0
+offset_top = 440.0
+offset_right = 112.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.45098, 0.337255, 1)
+
 [node name="GameWorld" type="Node2D" parent="."]
+
+[node name="Cactus" type="Sprite2D" parent="GameWorld"]
+position = Vector2(15184, 1992)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_23f6j")
+
+[node name="Cactus2" type="Sprite2D" parent="GameWorld"]
+position = Vector2(15230, 2003)
+rotation = -1.24091
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_23f6j")
+
+[node name="Cactus3" type="Sprite2D" parent="GameWorld"]
+position = Vector2(15214, 1957)
+rotation = 6.37112
+scale = Vector2(-1.5, -1.5)
+texture = ExtResource("1_23f6j")
+
+[node name="House" type="Sprite2D" parent="GameWorld"]
+position = Vector2(15357, 1922)
+scale = Vector2(2, 1.878)
+texture = ExtResource("6_wxlm2")
 
 [node name="Hero" parent="GameWorld" instance=ExtResource("1_e5tw0")]
 position = Vector2(216, 392)
@@ -21,6 +87,127 @@ position_smoothing_enabled = true
 [node name="WholeGameLevel" parent="GameWorld" instance=ExtResource("2_irti5")]
 position = Vector2(0, 4)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameWorld"]
+stream = ExtResource("3_cooie")
+volume_db = -10.0
+
+[node name="Text" type="Node" parent="GameWorld"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 241.0
+offset_top = 77.0
+offset_right = 925.0
+offset_bottom = 310.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]Внезапно начавшийся [tornado radius=5 freq=3]ураган[/tornado] разбросал ничего не подозревающих [color=white]мышат[/color] по всей округе.
+
+Мамамышь в горе, но папамышь уже бежит, чтобы спасти своих детей-балбесов!
+
+Для спасения [color=white]мышат[/color] он будет применять секретную технику прыганья на хвосте и [tornado radius=2 freq=6]крутить сальтухи[/tornado]!
+
+Стань героем, спаси всех [color=white]мышат[/color]!"
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 439.0
+offset_top = 335.0
+offset_right = 895.0
+offset_bottom = 543.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[rainbow]Жми пробел чтобы начать"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 2728.0
+offset_top = 128.0
+offset_right = 3184.0
+offset_bottom = 348.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "На некоторые уступы обычным
+прыжком не забраться..
+
+[tornado radius=3 freq=5]Сделай сальто[/tornado] и следующий прыжок будет выше!"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 3931.0
+offset_top = 380.0
+offset_right = 4387.0
+offset_bottom = 600.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Не забывай про [tornado radius=3 freq=5][rainbow]сальтухи[/rainbow][/tornado], они помогут тебе в пути!"
+fit_content = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 6944.0
+offset_top = 592.0
+offset_right = 7400.0
+offset_bottom = 812.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Ой-ёй! Этот мышь забрался так высоко!
+Достать до сюда сможет только самый умелый прыгун!
+(попробуй [tornado radius=3 freq=5][rainbow]двойное сальто[/rainbow][/tornado])"
+fit_content = true
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 9408.0
+offset_top = 688.0
+offset_right = 9864.0
+offset_bottom = 908.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Бедный мышонок очень хочет домой!
+Сможешь его достать?
+(попробуй [tornado radius=3 freq=5][rainbow]двойное сальто[/rainbow][/tornado])"
+fit_content = true
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 10672.0
+offset_top = 1744.0
+offset_right = 11128.0
+offset_bottom = 1964.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Не сдавайся, ты почти у цели!"
+fit_content = true
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="GameWorld/Text"]
+clip_contents = false
+offset_left = 14696.0
+offset_top = 1592.0
+offset_right = 15152.0
+offset_bottom = 1900.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]Это было просто [rainbow]невероятно[/rainbow]!
+Настолько крутых прыжков и переворотов [color=white]мышата[/color] ещё не видели!
+
+Они от всех своих сердец говорят тебе [rainbow]спасибо[/rainbow], а я к ним присоединяюсь.
+
+Надеюсь, это было весело и эмоционально.
+
+Спасибо что играл(а) в мою игру!
+Заглядывай ещё ;)
+
+
+[rainbow][tornado radius=5 freq=3]Ты просто чудо"
+fit_content = true
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="MicesCounter" parent="HUD" instance=ExtResource("5_e3qwk")]
+
+[node name="GamestartSplashscreen" parent="HUD" instance=ExtResource("1_lw76o")]
+
+[connection signal="showing_completed" from="HUD/GamestartSplashscreen" to="GameWorld/AudioStreamPlayer" method="play"]

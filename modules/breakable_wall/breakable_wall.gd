@@ -1,12 +1,15 @@
 extends StaticBody2D
 
 
+signal broked
+
+
 @export var _hp: int = 1:
 	set(v):
-		if v <= 0:
+		if v <= 0 and _hp > 0:
 			hide()
 			_collision_shape.set_deferred("disabled", true)
-		
+			broked.emit()
 		_hp = v
 @export var _checkpoints_signals_channel: CheckpointsSignalsChannel
 @export var _hero_signals_channel: HeroSignalsChannel
