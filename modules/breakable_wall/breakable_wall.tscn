@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn7qsm0n5ju31"]
+[gd_scene load_steps=7 format=3 uid="uid://dn7qsm0n5ju31"]
 
 [ext_resource type="Script" path="res://modules/breakable_wall/breakable_wall.gd" id="1_a5pbf"]
 [ext_resource type="Resource" uid="uid://c7803ogi3ar6e" path="res://modules/checkpoint/signals_channel.tres" id="2_djmr5"]
 [ext_resource type="Resource" uid="uid://b1i2xo836w05d" path="res://modules/hero/signals_channel.tres" id="3_bihs1"]
+[ext_resource type="Texture2D" uid="uid://bkkwha7pncef4" path="res://modules/tiles/cracked_wooden_plank.png" id="4_n6vwd"]
+[ext_resource type="AudioStream" uid="uid://bvgbobevpvlhk" path="res://modules/music/broke.Ogg" id="5_o2jiq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6pfe"]
-size = Vector2(100, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okibb"]
+size = Vector2(64, 14)
 
 [node name="BreakableWall" type="StaticBody2D"]
 collision_mask = 0
@@ -14,11 +16,24 @@ _checkpoints_signals_channel = ExtResource("2_djmr5")
 _hero_signals_channel = ExtResource("3_bihs1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j6pfe")
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_okibb")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_j6pfe")
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_okibb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_n6vwd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_o2jiq")
+volume_db = -10.0
+
+[connection signal="broked" from="." to="AudioStreamPlayer2D" method="play"]
