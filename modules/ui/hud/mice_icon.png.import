@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbaeptg1ami1c"
-path="res://.godot/imported/mice.jpg-90d8dfd46be2337db2a799dd3a4f6dfa.ctex"
+uid="uid://61kr77vk3xjo"
+path="res://.godot/imported/mice_icon.png-26cf29b8378e05b851957932cfb5f75f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/ui/hud/mice.jpg"
-dest_files=["res://.godot/imported/mice.jpg-90d8dfd46be2337db2a799dd3a4f6dfa.ctex"]
+source_file="res://modules/ui/hud/mice_icon.png"
+dest_files=["res://.godot/imported/mice_icon.png-26cf29b8378e05b851957932cfb5f75f.ctex"]
 
 [params]
 
