@@ -14,4 +14,6 @@ func _ready() -> void:
 
 func _collect() -> void:
 	_signals_channel.mice_collected.emit()
-	queue_free()
+	hide()
+	$CollisionShape2D.set_deferred("disabled", true)
+	$AudioStreamPlayer2D.play()
