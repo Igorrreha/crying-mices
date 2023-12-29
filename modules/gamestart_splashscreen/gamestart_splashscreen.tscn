@@ -23,6 +23,21 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_bd4ss")
 [sub_resource type="ViewportTexture" id="ViewportTexture_ini0w"]
 viewport_path = NodePath("IntroViewport")
 
+[sub_resource type="Animation" id="Animation_yfia4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Back:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_vdesp"]
 resource_name = "hide"
 length = 1.675
@@ -51,21 +66,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"complete_showing"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_yfia4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Back:material:shader_parameter/dissolve_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c35cf"]
@@ -101,6 +101,7 @@ size = Vector2i(168, 60)
 [node name="YliIntro" parent="IntroViewport" instance=ExtResource("1_oucax")]
 position = Vector2(84, 30)
 _autostart = true
+_skip = true
 
 [node name="OuputScreen" type="TextureRect" parent="."]
 texture_filter = 1
