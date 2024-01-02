@@ -25,6 +25,10 @@ signal became_movable
 @export var _pogo_jump_pad_area: Area2D
 @export var _flip_recognizer: FlipRecognizer
 
+@export_group("Input")
+@export var _rotation_stick_state: TouchStickState
+
+
 var _gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _cur_jump_type: JumpType
 
@@ -33,6 +37,7 @@ var _immovable: bool = true:
 		if v == false:
 			became_movable.emit()
 		_immovable = v
+
 
 @onready var _default_jump_sfx_player: AudioStreamPlayer2D = $Jump0
 
@@ -94,7 +99,13 @@ func _apply_gravity(frame_delta: float) -> void:
 
 
 func _update_rotation() -> void:
-	rotation = get_global_mouse_position().angle_to_point(global_position) + PI / 2
+	if _rotation_stick_state and _rotation_stick_state.is_active:
+		rotation = _rotation_stick_state.output_value.rotated(-PI/2).angle()
+		return
+	
+	#rotation = get_global_mouse_position().angle_to_point(global_position) + PI / 2
+	rotation = Input.get_vector("hero_rotate_left", "hero_rotate_right",
+		"hero_rotate_up", "hero_rotate_down").rotated(-PI/2).angle()
 
 
 func _on_flip_end(angle_delta: float) -> void:
@@ -116,7 +127,7 @@ func _on_flip_end(angle_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if _immovable and event.is_action_pressed("hero_revive"):
 		_cur_jump_type = JumpType.DEFAULT
 		_immovable = false
 

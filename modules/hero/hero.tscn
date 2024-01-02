@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2fnksqpgra2i"]
+[gd_scene load_steps=13 format=3 uid="uid://b2fnksqpgra2i"]
 
 [ext_resource type="Script" path="res://modules/hero/hero.gd" id="1_acjp8"]
 [ext_resource type="Script" path="res://modules/flip_recognizer/flip_recognizer.gd" id="2_tprou"]
 [ext_resource type="Resource" uid="uid://b1i2xo836w05d" path="res://modules/hero/signals_channel.tres" id="2_ybkpf"]
 [ext_resource type="Texture2D" uid="uid://vk5mqwsdtjj4" path="res://modules/hero/father_mice.png" id="3_dwqyi"]
 [ext_resource type="Script" path="res://modules/hero/debug_tool.gd" id="3_l3blg"]
+[ext_resource type="Resource" uid="uid://wuj4uo64n6d8" path="res://modules/hero/rotation_stick_state.tres" id="3_pt25i"]
 [ext_resource type="Script" path="res://modules/hero_to_checkpoint_returner/hero_to_checkpoint_returner.gd" id="5_jfd5j"]
 [ext_resource type="AudioStream" uid="uid://6ou4wpcfvl30" path="res://modules/music/jump.Ogg" id="7_eo8vc"]
 [ext_resource type="AudioStream" uid="uid://d2qw78iru38uj" path="res://modules/music/jump1.Ogg" id="8_p6yli"]
@@ -23,6 +24,7 @@ script = ExtResource("1_acjp8")
 _signals_channel = ExtResource("2_ybkpf")
 _pogo_jump_pad_area = NodePath("PogoJumpPad")
 _flip_recognizer = NodePath("FlipRecognizer")
+_rotation_stick_state = ExtResource("3_pt25i")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4.00024, 32.0019, -12, -16, -12, -40, 12, -40, 12, -16, 4.00024, 32.0019, 3.00018, 40.0024, 0, 43.0026, -3.00018, 40.0024)

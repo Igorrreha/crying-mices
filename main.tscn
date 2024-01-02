@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jo0dsnocvbvr"]
+[gd_scene load_steps=10 format=3 uid="uid://jo0dsnocvbvr"]
 
 [ext_resource type="Texture2D" uid="uid://dnhrgxl3y63us" path="res://modules/tiles/cactus.png" id="1_23f6j"]
 [ext_resource type="PackedScene" uid="uid://b2fnksqpgra2i" path="res://modules/hero/hero.tscn" id="1_e5tw0"]
@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://b8ixjj63gpe3t" path="res://modules/music/wind.ogg" id="3_cooie"]
 [ext_resource type="PackedScene" uid="uid://ukpcm1k1a78o" path="res://modules/ui/hud/mices_counter.tscn" id="5_e3qwk"]
 [ext_resource type="Texture2D" uid="uid://b50k0bepwr5wp" path="res://modules/tiles/house.png" id="6_wxlm2"]
+[ext_resource type="PackedScene" uid="uid://2s5balbekvcn" path="res://modules/touch_stick/touch_stick.tscn" id="8_xcv37"]
+[ext_resource type="Resource" uid="uid://wuj4uo64n6d8" path="res://modules/hero/rotation_stick_state.tres" id="9_st68t"]
 
 [node name="Main" type="Node"]
 
@@ -209,5 +211,12 @@ fit_content = true
 [node name="MicesCounter" parent="HUD" instance=ExtResource("5_e3qwk")]
 
 [node name="GamestartSplashscreen" parent="HUD" instance=ExtResource("1_lw76o")]
+
+[node name="TouchStick" parent="HUD" instance=ExtResource("8_xcv37")]
+offset_left = 195.0
+offset_top = -181.0
+offset_right = 195.0
+offset_bottom = -181.0
+state = ExtResource("9_st68t")
 
 [connection signal="showing_completed" from="HUD/GamestartSplashscreen" to="GameWorld/AudioStreamPlayer" method="play"]
