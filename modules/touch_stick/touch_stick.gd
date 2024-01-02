@@ -2,9 +2,7 @@
 extends Control
 
 
-signal activated
-signal deactivated
-signal output_updated(Vector2)
+@export var state: TouchStickState
 
 
 @export_group("Base")
@@ -32,7 +30,6 @@ signal output_updated(Vector2)
 		queue_redraw()
 
 
-var _is_active: bool
 var _touch_idx: int = -1
 
 
@@ -56,36 +53,34 @@ func _input(event: InputEvent) -> void:
 		var relative_input_position = event.position - global_position
 		
 		if event.is_pressed()\
-		and not _is_active\
-		and relative_input_position.length() <= _base_radius:
+		and not state.is_active\
+		and relative_input_position.length() <= _base_radius + _base_width:
 			_activate(event.index, relative_input_position)
 			return
 	
 	if event is InputEventScreenDrag\
-	and _is_active\
+	and state.is_active\
 	and event.index == _touch_idx:
 		var relative_input_position = event.position - global_position
 		_update_output_value(relative_input_position)
 
 
 func _activate(touch_idx: int, input_position: Vector2) -> void:
-	_is_active = true
+	state.set_value("is_active", true)
 	_touch_idx = touch_idx
 	_update_output_value(input_position)
-	activated.emit()
 
 
 func _deactivate() -> void:
-	_is_active = false
+	state.set_value("is_active", false)
 	_touch_idx = -1
 	_update_output_value(Vector2.ZERO)
-	deactivated.emit()
 
 
 func _update_output_value(relative_input_position: Vector2) -> void:
-	if not _is_active:
+	if not state.is_active:
 		_stick.position = Vector2.ZERO
-		output_updated.emit(Vector2.ZERO)
+		state.set_value("output_value", Vector2.ZERO)
 		queue_redraw()
 		return
 	
@@ -94,4 +89,4 @@ func _update_output_value(relative_input_position: Vector2) -> void:
 	
 	var output_value = _stick.position.normalized()\
 		* (_stick.position.length() / _stick_space_radius)
-	output_updated.emit(output_value)
+	state.set_value("output_value", output_value)
