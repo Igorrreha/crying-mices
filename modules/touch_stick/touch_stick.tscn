@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://2s5balbekvcn"]
+
+[ext_resource type="Script" path="res://modules/touch_stick/touch_stick.gd" id="1_wce4w"]
+
+[node name="TouchStick" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_bottom = -648.0
+grow_vertical = 0
+script = ExtResource("1_wce4w")
+_base_radius = 128.0
+_base_color = Color(1, 1, 1, 0.2)
+_base_width = 20
+_stick_radius = 30.0
+_stick_color = Color(1, 1, 1, 0.2)
+
+[node name="Stick" type="Control" parent="."]
+anchors_preset = 0
