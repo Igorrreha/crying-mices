@@ -1,0 +1,6 @@
+[[checkpoint]]
+[[camera_focusing]]
+[[collectable_mice]]
+[[breakable_wall]]
+[[tiles]]
+[[hero]]

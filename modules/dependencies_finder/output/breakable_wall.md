@@ -1,0 +1,4 @@
+[[checkpoint]]
+[[hero]]
+[[tiles]]
+[[music]]
